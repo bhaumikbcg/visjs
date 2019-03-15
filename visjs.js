@@ -24,7 +24,7 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
         showButton:true
     },
     clusterNodeProperties:{allowSingleNodeCluster:true},
-    joinCondition:nodeOptions => nodeOptions.group === 'PT',
+    joinCondition:nodeOptions => nodeOptions.cid === 1,
     edges:{
         chosen:{
             edge:function(color, selected){
@@ -66,8 +66,8 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
             nodeSpacing:100,
             treeSpacing:150,
             blockShifting:true,
-            edgeMinimization:false,
-            parentCentralization:false,
+            edgeMinimization:true,
+            parentCentralization:true,
             direction:'LR',
             sortMethod:'directed'
         }
@@ -103,7 +103,7 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
                 color.color = 'rgb(209,209,209)';
             },
             label:function(selected){
-                //console.dir(selected);
+                //selected gives object to change attributes of the label like color etc. It does not give the label itself.
             }
         }
     }

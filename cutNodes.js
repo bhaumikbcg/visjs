@@ -1,5 +1,5 @@
-tempArray = [];
 function cutNodes(){
+    tempArray = [];
     selectedNodes = network.getSelectedNodes();
     var nodeLength = nodes.length;
     selectedNodes.forEach(element => {

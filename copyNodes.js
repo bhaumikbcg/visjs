@@ -1,6 +1,7 @@
 var tempArray = [];
 var nodesData = nodes._data;
 function copyNodes(){
+    tempArray = [];
     selectedNodes = network.getSelectedNodes();
     var nodeLength = nodes.length;
     selectedNodes.forEach(element => {
@@ -9,5 +10,4 @@ function copyNodes(){
                 tempArray.push(nodesData[i]);
         }
     });
-    //console.dir(tempArray);
 }

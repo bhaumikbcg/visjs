@@ -9,4 +9,5 @@ function select(){
 function clusterData(){
     selectedNodes = network.getSelectedNodes();
     console.dir(selectedNodes);
+    console.dir(nodes);
 }
