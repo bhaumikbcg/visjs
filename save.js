@@ -4,7 +4,8 @@ function save(){
     var privateSpace = prompt("Name:");
     listOfNames.push(privateSpace);
     listLength = listOfNames.length;
-    $('.dropdown-menu').append('<button class="dropdown-item btn" type="button" onclick="openPrivateSpace(this)">' + privateSpace + '</button>');
+    $('#openPrivateSpace').append('<button class="dropdown-item btn" type="button" onclick="openPrivateSpace(this)">' + privateSpace + '</button>');
+    $('#submitPrivateSpace').append('<button class="dropdown-item btn" type="button" onclick="submitPrivateSpace(this)">' + privateSpace + '</button>');
     localStorage.setItem(privateSpace, JSON.stringify(tempArray));
 }
 
