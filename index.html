@@ -11,84 +11,90 @@
   <title>US Atlas</title>
 </head>
 <body>
-  <button class="btn" onclick="home()">Home Screen</button>
-  <!-- <button class="btn" onclick="select()">Get Nodes</button> -->
-  <span class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit</button>
-    <div class="dropdown-menu" id="openPrivateSpace" aria-labelledby="dropdownMenu1">
-      <button class="dropdown-item btn" onclick="copyNodes()">Copy Nodes</button>
-      <button class="dropdown-item btn" onclick="pasteNodes()">Paste Nodes</button>
-      <button class="dropdown-item btn" onclick="cutNodes()">Cut Nodes</button>
+  <div class="container-fluid">
+    <div class="row">
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">File</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu6">
+          <button class="dropdown-item btn" onclick="save()">Save</button>
+        </div>
+      </span>
+      <!-- <button class="btn" onclick="select()">Get Nodes</button> -->
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <button class="dropdown-item btn" onclick="copyNodes()">Copy Nodes</button>
+          <button class="dropdown-item btn" onclick="pasteNodes()">Paste Nodes</button>
+          <button class="dropdown-item btn" onclick="cutNodes()">Cut Nodes</button>
+        </div>
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Navigate</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item btn" onclick="getParentNodes()">Parent Nodes</button>
+          <button class="dropdown-item btn" onclick="getChildNodes()">Child Nodes</button>
+        </div>
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Group</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+          <button class="dropdown-item btn" onclick="createCluster()">Group</button>
+          <button class="dropdown-item btn" onclick="removeCluster()">Ungroup</button>
+        </div>
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
+        <div class="dropdown-menu" id="openPrivateSpace" aria-labelledby="dropdownMenu4"></div>
+      </span>
+      <!-- <button class="btn" onclick="clear()">Clear</button> -->
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Submit</button>
+        <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
+      </span>
+      <button class="btn" onclick="home()">Home</button>
+      <div class="input-group col-5" name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="myfile">
+          <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="submitForm()">Submit Docs</button>
+        </div>
+      </div>
+      <!-- <span>
+        <iframe name="hiddenFrame" class="hide"></iframe>
+        <form name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload" target="hiddenFrame">
+          <div class="form-group">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="myfile">
+          <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">
+          </div>
+        </form>
+      </span> -->
+      <!-- <button class="btn" onclick="submitForm()">Submit Doc</button> -->
     </div>
-  </span>
-  <!-- <button class="btn" onclick="copyNodes()">Copy Nodes</button>
-  <button class="btn" onclick="pasteNodes()">Paste Nodes</button>
-  <button class="btn" onclick="cutNodes()">Cut Nodes</button> -->
-  <span class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Navigate</button>
-    <div class="dropdown-menu" id="openPrivateSpace" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item btn" onclick="getParentNodes()">Parent Nodes</button>
-      <button class="dropdown-item btn" onclick="getChildNodes()">Child Nodes</button>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-9" id="mynetwork" style="height:600px"></div>
     </div>
-  </span>
-  <span class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Group</button>
-    <div class="dropdown-menu" id="openPrivateSpace" aria-labelledby="dropdownMenu3">
-      <button class="dropdown-item btn" onclick="createCluster()">Group</button>
-      <button class="dropdown-item btn" onclick="removeCluster()">Ungroup</button>
-    </div>
-  </span>
-  <!-- <button class="btn" onclick="getParentNodes()">Parent Nodes</button>
-  <button class="btn" onclick="getChildNodes()">Child Nodes</button>
-  <button class="btn" onclick="createCluster()">Create Cluster</button>
-  <button class="btn" onclick="removeCluster()">Remove Cluster</button> -->
-  <button class="btn" onclick="save()">Save</button>
-  <span class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
-    <div class="dropdown-menu" id="openPrivateSpace" aria-labelledby="dropdownMenu4"></div>
-  </span>
-  <button class="btn" onclick="clear()">Clear</button>
-  <span class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Submit</button>
-    <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
-  </span>
-  <iframe name="hiddenFrame" class="hide"></iframe>
-  <form name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload" target="hiddenFrame">
-    <div class="form-group">
-      <input type="file" class="form-control-file" id="exampleFormControlFile1" name="myfile">
-      <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">
-    </div>
-  </form>
-  <div class="container">
-    <div id="mynetwork" style="height:600px"></div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="data.js"></script>
-  <script src="visjs.js"></script>
-  <script src="home.js"></script>
-  <script src="getSelection.js"></script>
-  <script src="copyNodes.js"></script>
-  <script src="pasteNodes.js"></script>
-  <script src="cutNodes.js"></script>
-  <script src="parentChild.js"></script>
-  <script src="createCluster.js"></script>
-  <script src="removeCluster.js"></script>
-  <script src="save.js"></script>
-  <script src="open.js"></script>
-  <script src="submitPrivateSpace.js"></script>
+  <script src="js/submitForm.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/visjs.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/getSelection.js"></script>
+  <script src="js/copyNodes.js"></script>
+  <script src="js/pasteNodes.js"></script>
+  <script src="js/cutNodes.js"></script>
+  <script src="js/parentChild.js"></script>
+  <script src="js/createCluster.js"></script>
+  <script src="js/removeCluster.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/open.js"></script>
+  <script src="js/submitPrivateSpace.js"></script>
   <script>
-  function submitForm() {  
-    var frm = document.getElementsByName('upload-form')[0];
-    frm.submit(); // Submit the form
-    frm.reset();  // Reset all form data
-    functionConfirm("Do you like Football?", function yes() {   
-    }, function no() {
-        alert("no")
-    });
-    return false; // Prevent page refresh
-}
 </script>
 </body>
 </html>
