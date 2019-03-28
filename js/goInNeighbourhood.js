@@ -1,5 +1,5 @@
-function goInHierarchy(a){
-    var receivedNhName = a.innerHTML;
+function goInNeighbourhood(a){
+    var receivedNhName = a.nextSibling.innerHTML;
     nhNameData = JSON.parse(localStorage.getItem(receivedNhName));
     nhNameData.count += 1;
     localStorage.setItem(receivedNhName, JSON.stringify(nhNameData));
