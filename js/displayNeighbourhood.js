@@ -8,8 +8,8 @@ function displayNeighbourhood(myResponse){
         myObject.count = -1;
         localStorage.setItem(myObject.id, JSON.stringify(myObject));
         if(myObject.level === 0)
-            $('#hierarchy').append('<li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#' + myObject.name + myObject.id +'" aria-expanded="false" aria-controls="collapseExample" onclick="goInNeighbourhood(this)">'+ myObject.name +'<button class="btn btn-link d-none">' + myObject.id + '</button></button></li><div class="collpase" id="' + myObject.name + myObject.id + '"></div>');
+            $('#hierarchy').append('<li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#' + myObject.name + myObject.id +'" aria-expanded="false" aria-controls="collapseExample" onclick="goInNeighbourhood(this)">'+ myObject.name +'</button><button class="btn btn-link d-none">' + myObject.id + '</button></li><div class="collpase" id="' + myObject.name + myObject.id + '"></div>');
         else
-            $('#' + nhNameData.name + nhNameData.id).append('<ul><li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#' + myObject.name + myObject.id + '" aria-expanded="false" aria-controls="collapseExample" onclick="goInNeighbourhood(this)">'+ myObject.name +'<button class="btn btn-link d-none">' + myObject.id + '</button></button></li><div class="collpase" id="' + myObject.name + myObject.id + '"></div></ul>');
+            $('#' + nhNameData.name + nhNameData.id).append('<ul><li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#' + myObject.name + myObject.id + '" aria-expanded="false" aria-controls="collapseExample" onclick="goInNeighbourhood(this)">'+ myObject.name +'</button><button class="btn btn-link d-none">' + myObject.id + '</button></li><div class="collpase" id="' + myObject.name + myObject.id + '"></div></ul>');
     }
 }

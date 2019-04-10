@@ -52,7 +52,7 @@
         <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
       </span>
       <button class="btn" onclick="home()">Home</button>
-      <div class="input-group col-5" name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload">
+      <!-- <div class="input-group col-5" name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="myfile">
           <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
@@ -60,26 +60,28 @@
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="submitForm()">Submit Docs</button>
         </div>
-      </div>
-      <!-- <span>
+      </div> -->
+      <span>
         <iframe name="hiddenFrame" class="hide"></iframe>
         <form name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload" target="hiddenFrame">
           <div class="form-group">
             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="myfile">
-          <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">
+          <!-- <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()"> -->
           </div>
         </form>
-      </span> -->
-      <!-- <button class="btn" onclick="submitForm()">Submit Doc</button> -->
+      </span>
+      <button class="btn" onclick="submitForm()">Submit Doc</button>
     </div>
-    <div class="row">
-      <div class="col-3">
+    <div class="row no-gutters">
+      <div class="col-4 hierarchy">
         <div class="card">
           <div class="card-header"><span class="text-primary">NH</span> / <span class="text-success">Collab</span> / <span class="text-danger">WB</span> / <span class="text-warning">Cuboid</span></div>
-          <ul id="hierarchy"></ul>
+          <div>
+            <ul id="hierarchy"></ul>
+          </div>
         </div>
       </div>
-      <div class="col-9" id="mynetwork" style="height:600px"></div>
+      <div class="col-8" id="mynetwork" style="height:600px"></div>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -107,6 +109,8 @@
   <script src="js/displayWhiteboard.js"></script>
   <script src="js/goInWhiteboard.js"></script>
   <script src="js/displayCuboid.js"></script>
+  <script src="js/goInCuboid.js"></script>
+  <script src="js/displayNodes.js"></script>
   <script>
 </script>
 </body>
