@@ -22,22 +22,6 @@ function getHierarchy(hierarchyName, hierarchyId){
         }
     }
 }
-// function passResponse(myResponse){
-//     for(var i = 0; i<myResponse.length; i++){
-//         if(myResponse[i][2][1] === "ROOT" || nhNameData.id === myResponse[i][1][1]) continue;
-//         var myObject = {};
-//         nhName = myResponse[i][2][1];
-//         myObject.name = nhName;
-//         myObject.id = myResponse[i][1][1];
-//         myObject.level = myResponse[i][0][1];
-//         localStorage.setItem(nhName, JSON.stringify(myObject));
-//         if(myResponse[i][0][1] === 0)
-//             $('#hierarchy').append('<li id="' + myResponse[i][2][1] + '"><button type="button" class="btn btn-link" onclick="goInHierarchy(this)">'+myResponse[i][2][1]+'</button></li>');
-//         else
-//             $('#' + nhNameData.name).append('<ul><li id="' + myResponse[i][2][1] + '"><button type="button" class="btn btn-link" onclick="goInHierarchy(this)">'+myResponse[i][2][1]+'</button></li></ul>');
-//     }
-// }
-//myResponse[i][2][1] === "ROOT" ||
 function passResponse(myResponse){
     if(myResponse[1] !== undefined && myResponse[1][0][0] === "collab_id") displayCollaboration(myResponse);
     else if(myResponse[0] !== undefined && myResponse[0][0][0] === "wb_id") displayWhiteboard(myResponse);

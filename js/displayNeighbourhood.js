@@ -1,4 +1,5 @@
 function displayNeighbourhood(myResponse){
+    console.dir("displayNeighbourhood");
     for(var i = 0; i<myResponse.length; i++){
         if(nhNameData.id === myResponse[i][1][1]) continue;
         var myObject = {};

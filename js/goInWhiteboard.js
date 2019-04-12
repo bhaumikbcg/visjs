@@ -1,3 +1,4 @@
+var bool = true;
 function goInWhiteboard(a){
     var receivedWbId = a.nextSibling.innerHTML;
     wbNameData = JSON.parse(localStorage.getItem(receivedWbId));
@@ -5,6 +6,16 @@ function goInWhiteboard(a){
     localStorage.setItem(receivedWbId, JSON.stringify(wbNameData));
     wbNameData = JSON.parse(localStorage.getItem(receivedWbId));
     console.dir(wbNameData);
+    if(bool){
+        $('.toggle').removeAttr("disabled");
+        $('.toggle-button').removeAttr("disabled");
+        bool = !bool;
+    }
+    else {
+        $('.toggle').attr("disabled", "");
+        $('.toggle-button').attr("disabled", "");
+        bool = !bool;
+    }
     if(wbNameData.count === 0){
         hierarchyName = "wb";
         hierarchyId = wbNameData.id;

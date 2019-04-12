@@ -1,4 +1,5 @@
 function displayWhiteboard(myResponse){
+    console.dir("displayWB");
     for(var i = 0; i < myResponse.length; i++){
         var myWBObject = {};
         myWBObject.name = myResponse[i][1][1];

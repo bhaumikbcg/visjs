@@ -52,25 +52,15 @@
         <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
       </span>
       <button class="btn" onclick="home()">Home</button>
-      <!-- <div class="input-group col-5" name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" name="myfile">
-          <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-        </div>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onclick="submitForm()">Submit Docs</button>
-        </div>
-      </div> -->
       <span>
-        <iframe name="hiddenFrame" class="hide"></iframe>
+        <!-- <iframe name="hiddenFrame" class="hide"></iframe> -->
         <form name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload" target="hiddenFrame">
           <div class="form-group">
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="myfile">
-          <!-- <input type="button" value="Submit" id="btnsubmit" onclick="submitForm()"> -->
+            <input type="file" class="form-control-file toggle" id="exampleFormControlFile1" name="myfile" disabled>
           </div>
         </form>
       </span>
-      <button class="btn" onclick="submitForm()">Submit Doc</button>
+      <button class="btn toggle-button" onclick="submitForm()" disabled>Submit Doc</button>
     </div>
     <div class="row no-gutters">
       <div class="col-4 hierarchy">
@@ -111,6 +101,7 @@
   <script src="js/displayCuboid.js"></script>
   <script src="js/goInCuboid.js"></script>
   <script src="js/displayNodes.js"></script>
+  <script src="js/formString.js"></script>
   <script>
 </script>
 </body>

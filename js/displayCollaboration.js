@@ -1,4 +1,5 @@
 function displayCollaboration(myResponse){
+    console.dir("displayCollab");
     for(var i = 1; i < myResponse.length; i++){
         var myCollabObject = {};
         myCollabObject.name = myResponse[i][1][1];

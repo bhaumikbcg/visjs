@@ -1,4 +1,5 @@
 function displayCuboid(myResponse){
+    console.dir("displayCuboid");
     for(var i = 0; i < myResponse.length; i++){
         var myCuboidObject = {};
         myCuboidObject.name = myResponse[i][1][1];
