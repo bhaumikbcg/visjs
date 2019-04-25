@@ -1,13 +1,13 @@
 function goInNeighbourhood(a){
-    var receivedNhName = a.nextSibling.innerHTML;
-    nhNameData = JSON.parse(localStorage.getItem(receivedNhName));
+    var receivedNhId = a.nextSibling.innerHTML;
+    nhNameData = JSON.parse(localStorage.getItem(receivedNhId));
     nhNameData.count += 1;
-    localStorage.setItem(receivedNhName, JSON.stringify(nhNameData));
-    nhNameData = JSON.parse(localStorage.getItem(receivedNhName));
+    localStorage.setItem(receivedNhId, JSON.stringify(nhNameData));
+    nhNameData = JSON.parse(localStorage.getItem(receivedNhId));
     console.dir(nhNameData);
     if(nhNameData.count === 0){
-        neighbourhoodName = "nh_level";
-        neighbourhoodId = nhNameData.id;
-        getHierarchy(neighbourhoodName, neighbourhoodId);
+        hierarchyName = "nh_level";
+        hierarchyId = nhNameData.id;
+        getHierarchy(hierarchyName, hierarchyId);
     }
 }

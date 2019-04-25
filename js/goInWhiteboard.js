@@ -9,6 +9,7 @@ function goInWhiteboard(a){
     if(bool){
         $('.toggle').removeAttr("disabled");
         $('.toggle-button').removeAttr("disabled");
+        formString(wbNameData);
         bool = !bool;
     }
     else {
