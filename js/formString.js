@@ -2,6 +2,7 @@ var main_array = [];
 function formString(wbNameData){
     var nh0 = [[],[],[]], nh1 = [[],[],[]], nh2 = [[],[],[]], nh3 = [[],[],[]], collab = [[],[]], wb = [[],[]], count = 0;
     main_array = [];
+    getHierarchyForUpload(wbNameData.id);
     if(wbNameData !== null) wb = [["wb_id", wbNameData.id], ["wb_name", wbNameData.name]];
     if(collabNameData !== null) collab = [["collab_id", collabNameData.id], ["collab_name", collabNameData.name]];
     if(nhNameData !== null){
