@@ -62,6 +62,15 @@
         </form>
       </span>
       <button class="btn toggle-button" onclick="submitForm()" disabled>Submit Doc</button>
+      <div class="input-group col-3">
+          <div class="form-check">
+              <input class="form-check-input getCell" type="checkbox" value="" id="defaultCheck1" checked>
+          </div>
+        <input type="text" class="form-control getAddress" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getAddress()">Ripple</button>
+        </div>
+      </div>
     </div>
     <div class="row no-gutters">
       <div class="col-4 hierarchy">
@@ -106,6 +115,8 @@
   <script src="js/displayNodes.js"></script>
   <script src="js/formString.js"></script>
   <script src="js/getHierarchyForUpload.js"></script>
+  <script src="js/checkDuplication.js"></script>
+  <script src="js/getAddress.js"></script>
   <script>
 </script>
 </body>
