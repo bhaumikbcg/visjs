@@ -1,16 +1,15 @@
-var parentNodes = [];
-var childNodes = [];
+var parentNodes = [], childNodes = [];
 tempArray = [];
 function getParentNodes(){
     selectedNodes = network.getSelectedNodes();
     var nodeIdString = selectedNodes[0].toString();
     parentNodes = network.getConnectedNodes(nodeIdString, 'from');
     parentNodes.push(selectedNodes[0]);
-    var nodeLength = nodes.length;
+    var nodeLength = nodeData.length;
     parentNodes.forEach(element => {
-        for(var i = 1; i<=nodeLength; i++){
-            if(nodesData[i].id === element)
-                tempArray.push(nodesData[i]);
+        for(var i = 0; i < nodeLength; i++){
+            if(nodeData[i].id === element)
+                tempArray.push(nodeData[i]);
         }
     });
     nodes = new vis.DataSet(tempArray);
@@ -23,11 +22,11 @@ function getChildNodes(){
     var nodeIdString = selectedNodes[0].toString();
     childNodes = network.getConnectedNodes(nodeIdString, 'to');
     childNodes.push(selectedNodes[0]);
-    var nodeLength = nodes.length;
+    var nodeLength = nodeData.length;
     childNodes.forEach(element => {
-        for(var i = 1; i<=nodeLength; i++){
-            if(nodesData[i].id === element)
-                tempArray.push(nodesData[i]);
+        for(var i = 0; i < nodeLength; i++){
+            if(nodeData[i].id === element)
+                tempArray.push(nodeData[i]);
         }
     });
     nodes = new vis.DataSet(tempArray);

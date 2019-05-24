@@ -1,5 +1,4 @@
-var listOfNames = [];
-var listLength;
+var listOfNames = [], listLength;
 function save(){
     var privateSpace = prompt("Name:");
     listOfNames.push(privateSpace);

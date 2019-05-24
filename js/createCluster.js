@@ -1,15 +1,15 @@
 var clusterDataArray = [];
 function createCluster(){
     selectedNodes = network.getSelectedNodes();
-    nodeLength = nodes.length;
+    nodeLength = nodeData.length;
     var ID = '';
     var clusterName = prompt("Group Name:");
     selectedNodes.forEach(element => {
-        for(var i = 1; i<=nodeLength; i++){
-            if(nodesData[i].id === element){
-                clusterDataArray.push(nodesData[i]);
+        for(var i = 0; i < nodeLength; i++){
+            if(nodeData[i].id === element){
+                clusterDataArray.push(nodeData[i]);
                 ID += '0' + element;
-                nodesData[i].cid = 1;
+                nodeData[i].cid = 1;
             }
         }
     });
@@ -19,8 +19,8 @@ function createCluster(){
         label:clusterName,
         groupOf:clusterDataArray
     }
-    for(var j = 1; j<= nodes.length; j++){
-        tempArray.push(nodesData[j]);
+    for(var j = 0; j<= nodeData.length; j++){
+        tempArray.push(nodeData[j]);
     }
     tempArray.push(cluster);
     nodes = new vis.DataSet(tempArray);

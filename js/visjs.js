@@ -40,7 +40,11 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
         MT:{color:{background:'rgb(247, 244, 175)'}},
         CT:{color:{background:'rgb(232, 175, 247)'}},
         ET:{color:{background:'rgb(175, 247, 179)'}},
-        HT:{color:{background:'rgb(247, 205, 175)'}}
+        HT:{color:{background:'rgb(247, 205, 175)'}},
+        collab:{color:{background:'rgb(175, 247, 179)'}},
+        wb:{color:{background:'rgb(252, 181, 185)'}},
+        cuboid:{color:{background:'rgb(247, 244, 175)'}},
+        cell:{color:{background:'rgb(232, 175, 247)'}}
     },
     interaction:{
         dragNodes:true,

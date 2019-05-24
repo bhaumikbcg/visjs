@@ -1,14 +1,18 @@
-function displayNodes(myResponse){
-    var data = myResponse[7];
+function displayNodesForSearch(myResponse){
+    var data = myResponse[0];
     nodeData = [];
     edgeData = [];
     for(var i = 0; i < data.length; i++){
         var individualNodeObject = {};
         var individualEdgeObject = {};
-        individualNodeObject.id = data[i][0];
-        if(data[i][1] !== undefined) individualNodeObject.group = data[i][1];
+        if(data[i][1] !== undefined){
+            individualNodeObject.id = data[i][0].toString() + data[i][1];
+            individualNodeObject.group = data[i][1];
+        }
+        //if(data[i][1] !== undefined) individualNodeObject.group = data[i][1];
         individualNodeObject.label = data[i][2];
-        if(nodeData.length > 0) checkDuplication(data, nodeData, edgeData, individualNodeObject, individualEdgeObject, i);
+        if(data[i][3] !== undefined && data[i][3].toString().length === 1) individualNodeObject.level = data[i][3];
+        if(nodeData.length > 0) checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObject, individualEdgeObject, i);
         else nodeData.push(individualNodeObject);
     }
     console.dir(nodeData);
