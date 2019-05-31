@@ -22,11 +22,6 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
                     }
                 }
             }
-            else{
-                individualEdgeObject.from = data[i - 1][0].toString() + data[i - 1][1];
-                individualEdgeObject.to = nodeData[j].id;
-                edgeData.push(individualEdgeObject);
-            }
             flag = !flag;
             break;
         }
@@ -40,11 +35,6 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
                     individualEdgeObject.to = data[i][0].toString() + data[i][1];
                     edgeData.push(individualEdgeObject);
                 }
-            }
-            else{
-                individualEdgeObject.from = data[i - 1][0].toString() + data[i - 1][1];
-                individualEdgeObject.to = data[i][0].toString() + data[i][1];
-                edgeData.push(individualEdgeObject);
             }
         }
         else{
@@ -79,17 +69,9 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
                             }
                         }
                     }
-                    else{
-                        individualEdgeObject.from = edgeData[edgeData.length - 1].to;
-                        individualEdgeObject.to = data[i][0].toString() + data[i][1];
-                        edgeData.push(individualEdgeObject);
-                    }
                     break;
                 }
             }
-            // individualEdgeObject.from = edgeData[edgeData.length - 1].to;
-            // individualEdgeObject.to = data[i][0].toString() + data[i][1];
-            // edgeData.push(individualEdgeObject);
         }
     }
 }
