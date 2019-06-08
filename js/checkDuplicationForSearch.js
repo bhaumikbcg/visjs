@@ -46,16 +46,22 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
                             individualEdgeObject.to = data[i][0].toString() + data[i][1];
                             edgeData.push(individualEdgeObject);
                         }
-                        //|| nodeData[j].level > data[i][3]
+                        else if(nodeData[j].level > data[i][3] && data[i-1][3] === data[i][3]-1){
+                            individualEdgeObject.from = data[i-1][0].toString() + data[i-1][1];
+                            individualEdgeObject.to = data[i][0].toString() + data[i][1];
+                            var inside = containsObject(individualEdgeObject, edgeData);
+                            if(!inside) edgeData.push(individualEdgeObject);
+                        }
                         else if(nodeData[j].level === data[i][3]){
                             individualEdgeObject.from = data[i - 1][0].toString() + data[i - 1][1];
                             individualEdgeObject.to = data[i][0].toString() + data[i][1];
-                            edgeData.push(individualEdgeObject);
+                            var inside = containsObject(individualEdgeObject, edgeData);
+                            if(!inside) edgeData.push(individualEdgeObject);
                         }
                         else{
                             var newObject = false;
                             edgeData.forEach(element => {
-                                if(element.from === nodeData[nodeData.length - 1].id || element.to === nodeData[nodeData.length - 1].id) newObject = false;
+                                if((element.from === nodeData[nodeData.length - 1].id || element.to === nodeData[nodeData.length - 1].id) || nodeData[nodeData.length-1].level !==0) newObject = false;
                                 else newObject = true;
                             });
                             if(newObject){
@@ -63,7 +69,8 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
                                     if(data[i][3] < data[i + 1][3]){
                                         individualEdgeObject.from = data[i][0].toString() + data[i][1];
                                         individualEdgeObject.to = data[i + 1][0].toString() + data[i + 1][1];
-                                        edgeData.push(individualEdgeObject);
+                                        var inside = containsObject(individualEdgeObject, edgeData);
+                                        if(!inside) edgeData.push(individualEdgeObject);
                                     }
                                 }
                             }
