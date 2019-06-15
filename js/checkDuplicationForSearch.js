@@ -6,14 +6,14 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
             if(nodeData[nodeData.length - 1].level === nodeData[j].level - 1){
                 individualEdgeObject.from = nodeData[nodeData.length - 1].id;
                 individualEdgeObject.to = nodeData[j].id;
-                containsObject1(individualEdgeObject, edgeData);
+                containsObject(individualEdgeObject, edgeData);
             }
             else{
                 for(var k = nodeData.length - 1; k >= 0; k--){
                     if(k-1 >= 0 && (individualNodeObject.label === nodeData[k].label && individualNodeObject.group === nodeData[k].group) && (data[i - 1][2] === nodeData[k - 1].label && data[i - 1][1] === nodeData[k - 1].group)){
                         individualEdgeObject.from = nodeData[k - 1].id;
                         individualEdgeObject.to = nodeData[k].id;
-                        containsObject1(individualEdgeObject, edgeData);
+                        containsObject(individualEdgeObject, edgeData);
                         break;
                     }
                 }
@@ -34,20 +34,23 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
         else{
             for(var j = 0; j < nodeData.length; j++){
                 if(nodeData[j].id === edgeData[edgeData.length - 1].to){
+                    // if(nodeData[j].id === data[i][3]){
+
+                    // }
                     if(nodeData[j].level < data[i][3]){
                         individualEdgeObject.from = edgeData[edgeData.length - 1].to;
                         individualEdgeObject.to = data[i][0].toString() + data[i][1];
-                        containsObject1(individualEdgeObject, edgeData);
+                        containsObject(individualEdgeObject, edgeData);
                     }
                     else if(data[i-1][3] === data[i][3]-1){
                         individualEdgeObject.from = data[i-1][0].toString() + data[i-1][1];
                         individualEdgeObject.to = data[i][0].toString() + data[i][1];
-                        containsObject1(individualEdgeObject, edgeData);
+                        containsObject(individualEdgeObject, edgeData);
                     }
                     else if(nodeData[j].level === data[i][3]){
                         individualEdgeObject.from = data[i - 1][0].toString() + data[i - 1][1];
                         individualEdgeObject.to = data[i][0].toString() + data[i][1];
-                        containsObject1(individualEdgeObject, edgeData);
+                        containsObject(individualEdgeObject, edgeData);
                     }
                     else{
                         var newObject = false;
@@ -59,7 +62,25 @@ function checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObjec
                             if(data[i][3] < data[i + 1][3]){
                                 individualEdgeObject.from = data[i][0].toString() + data[i][1];
                                 individualEdgeObject.to = data[i+1][0].toString() + data[i+1][1];
-                                containsObject1(individualEdgeObject, edgeData);
+                                containsObject(individualEdgeObject, edgeData);
+                            }
+                        }
+                        if(!newObject){
+                            for(var k = nodeData.length-1; k>=0; k--){
+                                if(nodeData[nodeData.length-1].level >=5 && nodeData[nodeData.length-1].level - 1 === nodeData[k].level){
+                                    individualEdgeObject.from = nodeData[k].id;
+                                    individualEdgeObject.to = nodeData[nodeData.length-1].id;
+                                    containsObject(individualEdgeObject, edgeData);
+                                    break;
+                                }
+                                else{
+                                    if(nodeData[nodeData.length-1].level <= 4 && nodeData[nodeData.length-1].level > nodeData[k].level){
+                                        individualEdgeObject.from = nodeData[k].id;
+                                        individualEdgeObject.to = nodeData[nodeData.length-1].id;
+                                        containsObject(individualEdgeObject, edgeData);
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }

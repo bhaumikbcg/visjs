@@ -1,13 +1,17 @@
-function containsObject(obj, list){
-    for(var i = 0; i < list.length; i++){
-        if(obj.from === list[i].from && obj.to === list[i].to) return true;
-    }
-    return false;
-}
+// function containsObject(individualEdgeObject, edgeData){
+//     for(var i = 0; i < edgeData.length; i++){
+//         if(edgeData[i] === individualEdgeObject) break;
+//     }
+//     edgeData.push(individualEdgeObject);
+// }
 
-function containsObject1(individualEdgeObject, edgeData){
+function containsObject(individualEdgeObject, edgeData){
+    var inside = false;
     for(var i = 0; i < edgeData.length; i++){
-        if(individualEdgeObject.from === edgeData[i].from && individualEdgeObject.to === edgeData[i].to) break;
+        if(individualEdgeObject.from === edgeData[i].from && individualEdgeObject.to === edgeData[i].to){
+            inside = true;
+            break;
+        }
     }
-    edgeData.push(individualEdgeObject);
+    if(!inside) edgeData.push(individualEdgeObject);
 }
