@@ -1,21 +1,22 @@
-function displayNodesForSearch1(myResponse){
-    var data = myResponse[0], mapData = new Map(), duplicateData = [];
+function displayNodesForSearch(myResponse){
+    var data = myResponse[0];
     nodeData = [];
     edgeData = [];
     for(var i = 0; i < data.length; i++){
         var individualNodeObject = {};
-        individualNodeObject.id = data[i][0].toString() + data[i][1];
-        individualNodeObject.group = data[i][1];
+        var individualEdgeObject = {};
+        if(data[i][1] !== undefined){
+            individualNodeObject.id = data[i][0].toString() + data[i][1];
+            individualNodeObject.group = data[i][1];
+        }
         individualNodeObject.label = data[i][2];
-        individualNodeObject.level = data[i][3];
-        var keyId = individualNodeObject.group + individualNodeObject.label;
-        createMap(data, individualNodeObject, mapData, keyId, duplicateData);
+        if(data[i][3] !== undefined && data[i][3].toString().length === 1) individualNodeObject.level = data[i][3];
+        if(nodeData.length > 0) checkDuplicationForSearch(data, nodeData, edgeData, individualNodeObject, individualEdgeObject, i);
+        else nodeData.push(individualNodeObject);
     }
-    createEdgeData(duplicateData, edgeData);
-    console.dir(mapData);
-    console.dir(duplicateData);
+    console.dir(nodeData);
     console.dir(edgeData);
-    //transferNodesOnScreen(nodeData, edgeData);
+    transferNodesOnScreen(nodeData, edgeData);
 }
 
 function transferNodesOnScreen(nodeData, edgeData){

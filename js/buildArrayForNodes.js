@@ -51,5 +51,5 @@ function buildArrayForNodes(response, cell, bigArray){
         });
     }
     console.dir(bigArray);
-    displayNodesForSearch1([bigArray]);
+    displayNodesForSearch([bigArray]);
 }

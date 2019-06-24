@@ -1,4 +1,4 @@
-function createMap(data, individualNodeObject, mapData, keyId, duplicateData){
+function createMap(individualNodeObject, mapData, keyId, duplicateData){
     if(!mapData.has(keyId)){
         mapData.set(keyId, individualNodeObject);
         duplicateData.push(individualNodeObject);
