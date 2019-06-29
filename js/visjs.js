@@ -1,5 +1,6 @@
-var container = document.getElementById('mynetwork');
-var data = {nodes:nodes, edges: edges};
+//Here we are basically setting options for the network and the whole screen.
+var container = document.getElementById('mynetwork'); //the element in which network will be shown.
+var data = {nodes:nodes, edges: edges};//node and edge objects are stored in data object.
 var locales = {
     en: {
       edit: 'Edit',
@@ -18,7 +19,7 @@ var locales = {
     }
 }
 var options = {autoResize:true, height:'100%', width:'100%', locales:locales, clickToUse:true,        configure:{
-        enabled: true,
+        enabled: false,
         filter:'nodes, edges, selection',
         container: undefined,
         showButton:true
@@ -112,5 +113,5 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
         }
     }
 };
-var network = new vis.Network(container, data, options);
-network.setOptions(options);
+var network = new vis.Network(container, data, options);//network object is created.
+network.setOptions(options);//options are set for the network created above.

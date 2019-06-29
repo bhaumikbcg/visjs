@@ -1,3 +1,4 @@
+//First remove all selected elements from the nodesData and then push nodesData into temporary object and display them.
 function cutNodes(){
     tempArray = [];
     selectedNodes = network.getSelectedNodes();

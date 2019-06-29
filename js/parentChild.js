@@ -1,8 +1,8 @@
 var parentNodes = [], childNodes = [];
 tempArray = [];
 function getParentNodes(){
-    selectedNodes = network.getSelectedNodes();
-    var nodeIdString = selectedNodes[0].toString();
+    selectedNodes = network.getSelectedNodes();//get selected nodes
+    var nodeIdString = selectedNodes[0].toString();//convert nodeId to string
     parentNodes = network.getConnectedNodes(nodeIdString, 'from');
     parentNodes.push(selectedNodes[0]);
     var nodeLength = nodeData.length;
