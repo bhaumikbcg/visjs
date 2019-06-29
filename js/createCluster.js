@@ -19,7 +19,7 @@ function createCluster(){
         label:clusterName,
         groupOf:clusterDataArray
     }
-    for(var j = 0; j<= nodeData.length; j++){
+    for(var j = 0; j < nodeData.length; j++){
         tempArray.push(nodeData[j]);
     }
     tempArray.push(cluster);
