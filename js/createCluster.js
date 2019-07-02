@@ -1,5 +1,6 @@
 var clusterDataArray = [];
 function createCluster(){
+    tempArray = [];
     selectedNodes = network.getSelectedNodes();
     nodeLength = nodeData.length;
     var ID = '';
@@ -17,6 +18,7 @@ function createCluster(){
         id:Number(ID),
         group:'Cluster',
         label:clusterName,
+        level:0000,
         groupOf:clusterDataArray
     }
     for(var j = 0; j < nodeData.length; j++){
