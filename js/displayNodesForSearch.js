@@ -1,14 +1,14 @@
-function displayNodesForSearch(myResponse){
+function displayNodesForSearch(myResponse){//from buildArrayForNodes.js
     var data = myResponse[0], mapData = new Map(), duplicateData = [];
     nodeData = [];
     edgeData = [];
     for(var i = 0; i < data.length; i++){
-        var individualNodeObject = {};
-        individualNodeObject.id = data[i][0].toString() + data[i][1];
+        var individualNodeObject = {};//create custom node object for each element of the array
+        individualNodeObject.id = data[i][0].toString() + data[i][1];//concat of id and group
         individualNodeObject.group = data[i][1];
         individualNodeObject.label = data[i][2];
         individualNodeObject.level = data[i][3];
-        var keyId = individualNodeObject.group + individualNodeObject.label;
+        var keyId = individualNodeObject.group + individualNodeObject.label;//this is the key for map. Concat of group and label
         createMap(individualNodeObject, mapData, keyId, duplicateData);
     }
     createEdgeData(duplicateData, edgeData);

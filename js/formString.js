@@ -1,15 +1,15 @@
 var main_array = [];
-function formString(response){
+function formString(response){//from getHierarchyForUpload.js
     var nh0 = [[],[],[]], nh1 = [[],[],[]], nh2 = [[],[],[]], nh3 = [[],[],[]], collab = [[],[]], wb = [[],[]], count = 0, responseLength = response.length;
     main_array = [];
     console.dir(response);
-    if(responseLength >= 3) {
+    if(responseLength >= 3) {//create the complete hierarchy with it's objects
         wb = [["wb_id", response[responseLength-1][0][1]], ["wb_name", response[responseLength-1][1][1]]];
         collab = [["collab_id", response[responseLength-2][0][1]], ["collab_name", response[responseLength-2][1][1]]];
         nh0 = [["nh_level", 0], ["nh_id", response[0][1][1]], ["nh_name", response[0][2][1]]];
             if(responseLength >= 4){
                 nh1 = [["nh_level", 1], ["nh_id", response[1][1][1]], ["nh_name", response[1][2][1]]];
-                count += 1;
+                count += 1;//count gives the number of neighbourhood hierarchies
                 if(responseLength >= 5){
                     nh2 = [["nh_level", 2], ["nh_id", response[2][1][1]], ["nh_name", response[2][2][1]]];
                     count += 1;
@@ -20,6 +20,7 @@ function formString(response){
                 }
             }
         }
+    //now create the arrays depending on the neighbourhood hierarchies
     if(count === 3) main_array = [nh0, nh1, nh2, nh3, collab, wb];
     else if(count === 2) main_array = [nh0, nh1, nh2, collab, wb];
     else if(count === 1) main_array = [nh0, nh1, collab, wb];

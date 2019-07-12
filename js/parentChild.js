@@ -1,14 +1,12 @@
 var parentNodes = [], childNodes = [];
-tempArray = [];
 function getParentNodes(){
     tempArray = [];
     selectedNodes = network.getSelectedNodes();//get selected nodes
     var nodeIdString = selectedNodes[0].toString();//convert nodeId to string
-    parentNodes = network.getConnectedNodes(nodeIdString, 'from');
+    parentNodes = network.getConnectedNodes(nodeIdString, 'from');//get nodes which are connected to the 'from' edges.
     parentNodes.push(selectedNodes[0]);
-    var nodeLength = nodeData.length;
     parentNodes.forEach(element => {
-        for(var i = 0; i < nodeLength; i++){
+        for(var i = 0; i < nodeData.length; i++){
             if(nodeData[i].id === element) tempArray.push(nodeData[i]);
         }
     });
@@ -21,11 +19,10 @@ function getChildNodes(){
     tempArray = [];
     selectedNodes = network.getSelectedNodes();
     var nodeIdString = selectedNodes[0].toString();
-    childNodes = network.getConnectedNodes(nodeIdString, 'to');
+    childNodes = network.getConnectedNodes(nodeIdString, 'to');//get nodes connected to the 'to' edges
     childNodes.push(selectedNodes[0]);
-    var nodeLength = nodeData.length;
     childNodes.forEach(element => {
-        for(var i = 0; i < nodeLength; i++){
+        for(var i = 0; i < nodeData.length; i++){
             if(nodeData[i].id === element)
                 tempArray.push(nodeData[i]);
         }

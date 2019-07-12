@@ -1,5 +1,5 @@
-function createNodeData(mapData, nodeData){
-    for(var value of mapData.values()){
+function createNodeData(mapData, nodeData){//from displayNodesForSearch.js
+    for(var value of mapData.values()){//put all mapData values inside nodeData array
         nodeData.push(value);
     }
 }

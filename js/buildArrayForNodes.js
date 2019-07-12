@@ -1,12 +1,12 @@
-function buildArrayForNodes(response, cell, bigArray){
-    console.dir(response);
-    if(cell === 1){
+function buildArrayForNodes(response, cell, bigArray){//from getAddress.js
+    console.dir(response);//depending on the checkbox values, build array for the hierarchies
+    if(cell === 1){//this will only give values upto the cuboid
         response.forEach(element => {
             for(var i = 2; i < element.length; i++){
                 var outerElement = element[i];
                 for(var j = 0; j < outerElement.length; j++){
                     var smallArray = [], innerElement = outerElement[j];
-                    console.dir(innerElement);
+                    console.dir(innerElement);//use in the format(id, group, name , level)
                     if(innerElement[0][0] === "nh_level") smallArray = [innerElement[1][1], 'nh', innerElement[2][1], innerElement[0][1]];
                     else if(innerElement[0][0] === "collab_id") smallArray = [innerElement[0][1], 'collab', innerElement[1][1], 4];
                     else if(innerElement[0][0] === "wb_id") smallArray = [innerElement[0][1], 'wb', innerElement[1][1], 5];
@@ -18,7 +18,7 @@ function buildArrayForNodes(response, cell, bigArray){
             }
         });     
     }
-    if(cell === 0){
+    if(cell === 0){//this will give values upto the cell
         response.forEach(responseElement => {
             responseElement[responseElement.length-1][1].forEach(outerElement => {
                 outerElement.forEach(innerElement => {

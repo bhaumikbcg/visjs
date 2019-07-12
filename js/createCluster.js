@@ -1,20 +1,20 @@
-var clusterDataArray = [];
+var clusterDataArray = [], clusterTempArray = [];
 function createCluster(){
-    tempArray = [];
-    selectedNodes = network.getSelectedNodes();
+    clusterTempArray = [];
+    selectedNodes = network.getSelectedNodes();//get all selected nodes
     nodeLength = nodeData.length;
     var ID = '';
-    var clusterName = prompt("Group Name:");
+    var clusterName = prompt("Group Name:");//give a name for cluster
     selectedNodes.forEach(element => {
         for(var i = 0; i < nodeLength; i++){
             if(nodeData[i].id === element){
-                clusterDataArray.push(nodeData[i]);
-                ID += '0' + element;
+                clusterDataArray.push(nodeData[i]);//add selected nodes to a different array
+                ID += '0' + element;//add 0 as deliminator
                 nodeData[i].cid = 1;
             }
         }
     });
-    var cluster = {
+    var cluster = {//create a custom cluster object to store information for all nodes in the cluster. This object is only stored for now and not used anywhere. 
         id:Number(ID),
         group:'Cluster',
         label:clusterName,
@@ -22,11 +22,11 @@ function createCluster(){
         groupOf:clusterDataArray
     }
     for(var j = 0; j < nodeData.length; j++){
-        tempArray.push(nodeData[j]);
+        clusterTempArray.push(nodeData[j]);//add all nodes to tempArray
     }
-    tempArray.push(cluster);
-    nodes = new vis.DataSet(tempArray);
+    clusterTempArray.push(cluster);//add the cluster created above to tempArray, in addition to all nodes already present
+    nodes = new vis.DataSet(clusterTempArray);
     data = {nodes: nodes, edges: edges};
     network = new vis.Network(container, data, options);
-    network.clustering.cluster(options);
+    network.clustering.cluster(options);//this is the cluster created by visjs
 }
