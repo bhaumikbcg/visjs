@@ -18,7 +18,7 @@ var locales = {
       editClusterError: 'Clusters cannot be edited.'
     }
 }
-var options = {autoResize:true, height:'100%', width:'100%', locales:locales, clickToUse:true,        configure:{
+var options = {autoResize:true, height:'100%', width:'100%', locales:locales, clickToUse:false,        configure:{
         enabled: false,
         filter:'nodes, edges, selection',
         container: undefined,
@@ -52,6 +52,7 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
         dragView:true,
         hideEdgesOnDrag:true,
         hoverConnectedEdges:true,
+        hover:true,
         keyboard:{
             enabled:true,
             speed:{x:10, y:10, zoom:0.02},
@@ -109,7 +110,8 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
             },
             label:function(selected){
                 //selected gives object to change attributes of the label like color etc. It does not give the label itself.
-            }
+            },
+            //image:url('C:\Users\Bhaumik\OneDrive - Boardwalktech, Inc\visjs\images\img.jpg')
         }
     }
 };

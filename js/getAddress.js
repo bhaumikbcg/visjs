@@ -1,5 +1,5 @@
 function getAddress(){//from index.html
-    var bigArray = [], cell, filter = '2000155';
+    var bigArray = [], cell, filter = '0';
     var searchWord = $('.getAddress').val();//collect the word/phrase that you type in the text box.
     if($('.getCell').prop("checked") === true) cell = 1;//collect the boolean value of the checkbox
     else cell = 0;
