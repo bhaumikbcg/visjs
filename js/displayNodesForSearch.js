@@ -21,4 +21,5 @@ function transferNodesOnScreen(nodeData, edgeData){
     edges = new vis.DataSet(edgeData);
     data = {nodes:nodes, edges:edges};
     network = new vis.Network(container, data, options);
+    network.on("hoverNode", function(properties){getNodeId(properties.node);});
 }

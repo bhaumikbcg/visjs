@@ -206,7 +206,8 @@ function loadGrid() {
 //Accessing Args
 function getArgs() {
   //imagePath = './Images/Base.png'
-  args = ["Base", "Collar", "SleeveRight", "SleeveLeft", "buttons", "cuffright", "cuffleft", "pocket1", "pocket2", "pocket1", "pocket2"]
+  args = JSON.parse(localStorage.getItem("nameArray"));
+  //args = ["Base", "Collar", "SleeveRight", "SleeveLeft", "buttons", "cuffright", "cuffleft", "pocket1", "pocket2", "pocket1", "pocket2"]
 }
 
 //Annotation Builder

@@ -6,12 +6,12 @@ function goInWhiteboard(a){//from displayWhiteboard.js
     wbNameData.count += 1;
     localStorage.setItem(receivedWbId, JSON.stringify(wbNameData));
     wbNameData = JSON.parse(localStorage.getItem(receivedWbId));
-    console.dir(wbNameData);
     if(bool){//toggle on the li element to enable or disable the button which is used to upload the documents
         $('.toggle').removeAttr("disabled");
         $('.toggle-button').removeAttr("disabled");
         getHierarchyForUpload(wbNameData);
         bool = !bool;
+        //sleep(5000);
     }
     else {
         $('.toggle').attr("disabled", "");

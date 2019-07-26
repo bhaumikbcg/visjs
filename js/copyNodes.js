@@ -8,4 +8,7 @@ function copyNodes(){
             if(nodeData[i].id === element) tempArray.push(nodeData[i]);
         }
     });
+    nodes = new vis.DataSet(tempArray);
+    data = {nodes:nodes, edges:edges};
+    network = new vis.Network(container, data, options);
 }

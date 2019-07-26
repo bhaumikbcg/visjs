@@ -14,10 +14,3 @@ function displayNodes(myResponse){//from selectDisplay.js
     console.dir(edgeData);
     transferNodesOnScreen(nodeData, edgeData);
 }
-
-function transferNodesOnScreen(nodeData, edgeData){
-    nodes = new vis.DataSet(nodeData);
-    edges = new vis.DataSet(edgeData);
-    data = {nodes:nodes, edges:edges};
-    network = new vis.Network(container, data, options);
-}

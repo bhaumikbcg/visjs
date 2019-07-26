@@ -17,6 +17,7 @@
       <span class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">File</button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu6">
+          <button class="dropdown-item btn" onclick="home()">Home</button>
           <button class="dropdown-item btn" onclick="save()">Save</button>
           <button class="dropdown-item btn" onclick="selectAll()">Select All</button>
           <button class="dropdown-item btn" onclick="network.unselectAll()">De-Select All</button>
@@ -25,8 +26,7 @@
       <span class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit</button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <button class="dropdown-item btn" onclick="copyNodes()">Copy Nodes</button>
-          <button class="dropdown-item btn" onclick="pasteNodes()">Paste Nodes</button>
+          <button class="dropdown-item btn" onclick="copyNodes()">Copy & Paste</button>
           <button class="dropdown-item btn" onclick="cutNodes()">Cut Nodes</button>
           <button class="dropdown-item btn" onclick="showData()">Show Data</button>
         </div>
@@ -36,7 +36,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <button class="dropdown-item btn" onclick="getParentNodes()">Parent Nodes</button>
           <button class="dropdown-item btn" onclick="getChildNodes()">Child Nodes</button>
-          <a class="dropdown-item btn" target="_blank" href="AnnotationTool-master/index.html" role="button">Image Editor</a>
+          <a class="dropdown-item btn" onclick="sendNodeNames()" target="_blank" href="AnnotationTool-master/index.html" role="button">Image Editor</a>
         </div>
       </span>
       <span class="dropdown">
@@ -55,7 +55,15 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Submit</button>
         <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
       </span>
-      <button class="btn" onclick="home()">Home</button>
+      <span class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu7">
+            <button class="dropdown-item btn" onclick="home()">Home</button>
+            <button class="dropdown-item btn" onclick="save()">Save</button>
+            <button class="dropdown-item btn" onclick="selectAll()">Select All</button>
+            <button class="dropdown-item btn" onclick="network.unselectAll()">De-Select All</button>
+          </div>
+        </span>
       <span>
         <!-- <iframe name="hiddenFrame" class="hide"></iframe> -->
         <form name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload" target="hiddenFrame">
@@ -68,7 +76,7 @@
       <button class="btn toggle-button" onclick="submitForm()" disabled>Submit Doc</button>
       <div class="input-group col-3">
           <div class="form-check">
-              <input class="form-check-input getCell" type="checkbox" value="" id="defaultCheck1" checked>
+              <input class="form-check-input getCell" type="checkbox" value="" id="defaultCheck1">
           </div>
         <input type="text" class="form-control getAddress" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
         <div class="input-group-append">
@@ -98,7 +106,6 @@
   <script src="js/home.js"></script>
   <script src="js/getSelection.js"></script>
   <script src="js/copyNodes.js"></script>
-  <script src="js/pasteNodes.js"></script>
   <script src="js/cutNodes.js"></script>
   <script src="js/parentChild.js"></script>
   <script src="js/createCluster.js"></script>
@@ -106,6 +113,7 @@
   <script src="js/save.js"></script>
   <script src="js/open.js"></script>
   <script src="js/submitPrivateSpace.js"></script>
+  <script src="js/getData.js"></script>
   <script src="js/getHierarchy.js"></script>
   <script src="js/selectDisplay.js"></script>
   <script src="js/solveName.js"></script>
@@ -131,6 +139,8 @@
   <script src="js/showData.js"></script>
   <script src="js/selectAll.js"></script>
   <script src="js/getNodeId.js"></script>
+  <script src="js/createSentence.js"></script>
+  <script src="js/sendNodeNames.js"></script>
   <script>
 </script>
 </body>

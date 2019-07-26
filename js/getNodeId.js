@@ -1,12 +1,5 @@
-var myOpentip = new Opentip($("#mynetwork"));
-network.on("hoverNode", function(properties){getNodeId(properties);});
-function getNodeId(properties){
-    myOpentip.setContent(properties.node);
-    myOpentip.show();
+function getNodeId(rowId){//from displayNodesForSearch.js
+    if(rowId.length > 1){rowId = rowId.match(/[0-9]/g).join('');}
+    var url = 'get?type=row&id='+ rowId +'&offset=10'
+    getData(url, function(response){createSentence(response, rowId);});
 }
-network.on("blurNode", function(){
-    myOpentip.hide();
-});
-network.on("showPopup", function(params){
-    console.dir(params);
-});
