@@ -56,13 +56,8 @@
         <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
       </span>
       <span class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu7">
-            <button class="dropdown-item btn" onclick="home()">Home</button>
-            <button class="dropdown-item btn" onclick="save()">Save</button>
-            <button class="dropdown-item btn" onclick="selectAll()">Select All</button>
-            <button class="dropdown-item btn" onclick="network.unselectAll()">De-Select All</button>
-          </div>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" count="-1" onclick="getHierarchy('wb', '1176')">Filters</button>
+          <div class="dropdown-menu" id="filterList" aria-labelledby="dropdownMenu7"></div>
         </span>
       <span>
         <!-- <iframe name="hiddenFrame" class="hide"></iframe> -->
@@ -141,6 +136,7 @@
   <script src="js/getNodeId.js"></script>
   <script src="js/createSentence.js"></script>
   <script src="js/sendNodeNames.js"></script>
+  <script src="js/getFilterCuboids.js"></script>
   <script>
 </script>
 </body>

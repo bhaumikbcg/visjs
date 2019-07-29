@@ -1,5 +1,8 @@
 function getNodeId(rowId){//from displayNodesForSearch.js
-    if(rowId.length > 1){rowId = rowId.match(/[0-9]/g).join('');}
+    if(rowId.length > 1){
+        var fullRowId = rowId;
+        rowId = rowId.match(/[0-9]/g).join('');
+    }
     var url = 'get?type=row&id='+ rowId +'&offset=10'
-    getData(url, function(response){createSentence(response, rowId);});
+    getData(url, function(response){createSentence(response, rowId, fullRowId);});
 }

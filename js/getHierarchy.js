@@ -10,7 +10,8 @@ function getHierarchy(hierarchyName, hierarchyId){//called by goInWhiteBoard.js 
     function processRequest(e){
         if(xhr.readyState == 4 && xhr.status == 200) {
             response = JSON.parse(xhr.responseText);
-            selectDisplay(response);
+            if(hierarchyId === '1176') getFilterCuboids(response);
+            else selectDisplay(response);
         }
     }
 }
