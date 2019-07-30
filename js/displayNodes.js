@@ -12,5 +12,5 @@ function displayNodes(myResponse){//from selectDisplay.js
     }
     console.dir(nodeData);
     console.dir(edgeData);
-    transferNodesOnScreen(nodeData, edgeData);
+    transferNodesOnScreen(nodeData, edgeData, data);
 }
