@@ -1,4 +1,4 @@
-function sendNodeNames(){
+function sendNodeNames(){//from index.html
     copyNodes();
     var nameArrayForImageEditor = [];
     tempArray.forEach(element => {

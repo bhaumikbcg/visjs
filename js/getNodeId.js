@@ -1,13 +1,14 @@
-function getNodeId(rowId, hoverData){//from displayNodesForSearch.js
-    if(typeof(rowId) === "string" && rowId.includes("cuboid")) getCellsInCuboidForHover(rowId, hoverData);
-    else if(rowId.length >1){
-        var fullRowId = rowId;
-        rowId = rowId.match(/[0-9]/g).join('');
+function getNodeId(rowId, cellid, hoverData){//from displayNodesForSearch.js
+    if(typeof(cellid) === "string" && cellid.includes("cuboid")) getCellsInCuboidForHover(cellid, hoverData);
+    else if(typeof(rowId) === "number"){
+        //rowId = rowId.match(/[0-9]/g).join('');
         var url = 'get?type=row&id='+ rowId +'&offset=10';
-        getData(url, function(response){createSentence(response, rowId, fullRowId);});
+        getData(url, function(response){createSentence(response, rowId, cellid);});
     }
     else{
-        var url = 'get?type=row&id='+ rowId +'&offset=10';
-        getData(url, function(response){createSentence(response, rowId, fullRowId);});
+        if(typeof(cellid) === "number"){
+            var url = 'get?type=row&id='+ cellid +'&offset=10';
+            getData(url, function(response){createSentence(response, rowId, cellid);});
+        }
     }
 }

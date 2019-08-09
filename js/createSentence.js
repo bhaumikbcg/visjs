@@ -1,6 +1,5 @@
-function createSentence(response, rowId, fullRowId){//from getNodeId.js
+function createSentence(response, rowId, cellid){//from getNodeId.js
     var sentence = '';
-    console.dir(response);
     for(var i = 4; i<response.length; i++){
         if(response[i][2].length === 1) sentence = sentence + ' ' + response[i][2][0][3];
         else if(response[i][2][0][2] !== "Group Id"){
@@ -10,20 +9,21 @@ function createSentence(response, rowId, fullRowId){//from getNodeId.js
         }
         else sentence = sentence + ' ' + response[i][2][2][3];
     }
-    addSentence(sentence, rowId, fullRowId);
+    addSentence(sentence, rowId, cellid);
 }
 
-function addSentence(sentence, rowId, fullRowId){
+function addSentence(sentence, rowId, cellid){
     var myId;
+    console.dir(nodeData);
     for(var i = 0; i<nodeData.length; i++){
-        if(typeof nodeData[i].id === "number") myId = nodeData[i].id.toString();
-        else myId = nodeData[i].id;
-        if(myId.includes(rowId)) {
-            if(nodeData[i].level !== undefined) nodes.update({id:fullRowId, title:sentence, level:nodeData[i].level});
-            else nodes.update({id:rowId, title:sentence});
-            // network.body.emitter.emit('_dataChanged');
-            // network.redraw();
-            break;
+        if(nodeData[i].rowid || typeof(nodeData[i].id === "number")){
+            if(typeof(nodeData[i].rowid) === "number") myId = nodeData[i].rowid.toString();
+            else myId = nodeData[i].id.toString();
+            if(myId.includes(rowId) || myId.includes(cellid)) {
+                if(nodeData[i].level !== undefined) nodes.update({id:cellid, title:sentence, level:nodeData[i].level});
+                else nodes.update({id:cellid, title:sentence});
+                break;
+            }
         }
     }
 }

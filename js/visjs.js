@@ -18,7 +18,7 @@ var locales = {
       editClusterError: 'Clusters cannot be edited.'
     }
 }
-var options = {autoResize:true, height:'100%', width:'100%', locales:locales, clickToUse:false,        configure:{
+var options = {autoResize:false, height:'100%', width:'100%', locales:locales, clickToUse:true,        configure:{
         enabled: false,
         filter:'nodes, edges, selection',
         container: undefined,
@@ -68,7 +68,7 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
         improvedLayout:true,
         hierarchical:{
             enabled:true,
-            levelSeparation:100,
+            levelSeparation:200,
             nodeSpacing:100,
             treeSpacing:150,
             blockShifting:true,
@@ -77,6 +77,25 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
             direction:'LR',
             sortMethod:'directed'
         }
+    },
+    physics:{
+        enabled:true,
+        barnesHut:{
+            centralGravity: 0.0,
+            springLength: 100,
+            springConstant: 0.01,
+            nodeDistance: 120,
+            damping: 0.09,
+            avoidOverlap:0
+        },
+        solver:'barnesHut',
+        stabilization: {
+            enabled: true,
+            iterations: 1000,
+            updateInterval: 100,
+            onlyDynamicEdges: false,
+            fit: true
+          }
     },
     manipulation:{
         enabled:true,
@@ -112,7 +131,8 @@ var options = {autoResize:true, height:'100%', width:'100%', locales:locales, cl
                 //selected gives object to change attributes of the label like color etc. It does not give the label itself.
             },
             //image:url('C:\Users\Bhaumik\OneDrive - Boardwalktech, Inc\visjs\images\img.jpg')
-        }
+        },
+        //physics:true,
     }
 };
 var network = new vis.Network(container, data, options);//network object is created.

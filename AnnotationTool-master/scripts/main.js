@@ -23,7 +23,10 @@ var gridId = null;
 var imgclick = false;
 
 //Mode of whether to design or annotation;
-var mode = "annotation";
+var mode = "design";
+
+//Mannequin Gender
+var gender = true;
 
 //Position of first click
 var pos1 = null;
@@ -35,11 +38,22 @@ var args;
 //Konva Image Layers and Setup
 var place = new Konva.Layer();
 var imglayer = new Konva.Layer();
-var tooltipLayer = new Konva.Layer();
 stage.add(imglayer);
 stage.add(place);
-stage.add(tooltipLayer);
 add(stage);
+
+//Pattern Section
+var imageP;
+var imageO;
+var patternImg;
+var patternBox = new Konva.Line({
+  points: [700, 0, 700, 1000],
+  stroke: 'black',
+  strokeWidth: 2,
+  lineJoin: 'round'
+});
+place.add(patternBox);
+place.draw();
 
 //Transformer Array
 var trarr = [];
@@ -84,9 +98,23 @@ var elem = document.createElement('div');
 document.body.appendChild(elem);
 
 //Access the Args
-getArgs()
+getArgs();
 
+//Setting the args
+setup();
 
+//Group
+var group = new Konva.Group()
+imglayer.add(group);
+var trg = new Konva.Transformer();
+trg.attachTo(group);
+trarr.push(trg);
+
+//Mannequin
+var mannequin;
+
+stage.off('click');
+setMode(true);
 
 //Setup for the Input of the BCVM
 if (gridId == null) {
@@ -122,46 +150,30 @@ document.getElementById('annotationMode').addEventListener('click', function() {
   setMode(false);
 });
 
+//document.getElementById('mannequinChange').addEventListener('click', function() {
+//  gender = !gender
+//  mannequinChange(gender);
+//});
+
 //Changing modes
 function setMode(bool) {
   var i;
   group.draggable(bool);
-  console.log(imgarr);
   for (i = 0; i < trarr.length; i++) {
-    if (bool == false) {
-      imgarr[i].off('mouseover');
-    } else {
-      enableName(imgarr[i]);
-    }
     trarr[i].resizeEnabled(bool);
     trarr[i].rotateEnabled(bool);
     trarr[i].borderEnabled(bool);
-    imgarr[i].draggable(bool);
-    imglayer.draw()
   }
+  for (i = 0; i < imgarr.length; i++) {
+    if (bool == false) {
+      imgarr[i].off('dblclick');
+    } else {
+      imageMenu(imgarr[i]);
+    }
+    imgarr[i].draggable(bool);
+  }
+  imglayer.draw()
 }
-
-//Tooltip
-var tooltip = new Konva.Text({
-        text: '',
-        fontFamily: 'Calibri',
-        fontSize: 12,
-        padding: 5,
-        textFill: 'white',
-        fill: 'black',
-        alpha: 0.75,
-        visible: false
-});
-
-//Group
-var group = new Konva.Group({
-  draggable: true,
-})
-imglayer.add(group);
-var trg = new Konva.Transformer();
-trg.attachTo(group);
-trarr.push(trg);
-imgarr.push(group);
 
 //Boardwalk Setup Function
 function getCreds() {
@@ -204,11 +216,14 @@ function loadGrid() {
 }
 
 //Accessing Args
-function getArgs() {
+function  getArgs() {
   //imagePath = './Images/Base.png'
   args = JSON.parse(localStorage.getItem("nameArray"));
-  //args = ["Base", "Collar", "SleeveRight", "SleeveLeft", "buttons", "cuffright", "cuffleft", "pocket1", "pocket2", "pocket1", "pocket2"]
+  //args = ["Base", "Notched Collar", "SleeveRight", "SleeveLeft", "buttons", "cuffright", "cuffleft", "pocket1", "pocket2", "pocket1", "pocket2"]
+  //args = [];
 }
+
+
 
 //Annotation Builder
 function textLine(pos1, pos2, layer, isnew, re) {
@@ -238,14 +253,14 @@ function textLine(pos1, pos2, layer, isnew, re) {
     var te = ge.getCellEditorRC(re.rowSequenceNo, columns[0].columnSequenceNo);
     text = te.stringValue;
   }
-  if (pos2.x < (stage.width())/2) {
+  if (pos2.x < 700/2) {
     xpos = -10;
   }
   if (pos2.y < (stage.height())/2) {
     ypos = -20;
   }
-  if ((pos2.x + xpos) + widthLimit >  stage.width()) {
-    xpos = xpos + stage.width() - pos2.x - widthLimit;
+  if ((pos2.x + xpos) + widthLimit >  700) {
+    xpos = xpos + 700 - pos2.x - widthLimit;
   } else if ((pos2.x + xpos) < 5) {
     xpos = xpos + 10;
   }
@@ -331,52 +346,68 @@ function imageCreator(x, y, path, draggable, name) {
         image: imageObj,
         width: imageObj.width,
         height: imageObj.height,
-        draggable: draggable
+        draggable: draggable,
+        dragBoundFunc: function(pos) {
+          var nx = pos.x;
+          if (pos.x < 100) {
+            nx = 100;
+          } else if (pos.x > 500) {
+            nx = 500
+          }
+          var ny = pos.y;
+          if (pos.y < 0) {
+            ny = 0
+          } else if (pos.y > stage.height()) {
+            ny = stage.height()
+          }
+          return {
+            x : nx,
+            y : ny
+          }
+        }
       });
       var tr = new Konva.Transformer();
       tr.attachTo(flat);
-      enableName(flat);
       group.add(flat);
       group.add(tr);
       imglayer.draw();
       imgarr.push(flat);
       trarr.push(tr);
-      console.log(group);
+      imageMenu(flat);
   };
   imageObj.src = path;
 }
 
-function enableName(image) {
-  image.on('mouseover', function() {
-        var mousePos = stage.getPointerPosition();
-        tooltip.position({
-          x: mousePos.x + 5,
-          y: mousePos.y + 5
-        });
-        tooltip.text(image.name());
-        tooltip.show();
-        tooltipLayer.batchDraw();
-      });
-}
-
 //To Use Image Builder or Design
-if (imagePath == null) {
-  design(args)
-} else {
-  imageObj = new Image();
-  imageObj.onload = function() {
-      konvaImage = new Konva.Image({
-        y: (stage.height() - 300)/2,
-        x: (stage.width() - 300)/2,
-        image: imageObj,
+function setup() {
+  if (imagePath == null) {
+    var rect1 = new Konva.Rect({
+        x: 200,
+        y: 30,
         width: 300,
-        height: 300
+        height: 570,
+        stroke: 'black',
+        strokeWidth: 4
       });
-      imglayer.add(konvaImage);
-      imglayer.draw();
-    };
-  imageObj.src = imagePath;
-}
+    imglayer.add(rect1);
+    rect1.moveToBottom();
+    design(args)
+  } else {
+    imageObj = new Image();
+    imageObj.onload = function() {
+        konvaImage = new Konva.Image({
+          y: (stage.height() - 300)/2,
+          x: (700 - 300)/2,
+          image: imageObj,
+          width: 300,
+          height: 300
+        });
+        group.add(konvaImage);
+        imglayer.draw();
+      };
+      imageObj.src = imagePath;
+    }
+  }
 
 //Building a design
 function design(array) {
@@ -391,7 +422,8 @@ function design(array) {
 //Holder for getting File Path
 function getFilePath(args) {
   function converter(txt, index, array) {
-    return "./Images/" + txt + ".png";
+    var text = txt.replace(" ","_");
+    return "./Images/" + text + ".png";
   }
   arr = args.map(converter);
   return arr;
@@ -408,13 +440,25 @@ function getDimensions(args) {
 
 //Check whether the click is within the image size
 function withinImg(pos) {
-  if (pos.x - 350 >= 0 && pos.x - 350 <= 300
-    && pos.y - 150 >= 0 && pos.y - 150 <= 300) {
+  if (pos.x >= 200 && pos.x <= 500
+    && pos.y >= 30 && pos.y <= 600) {
       return true;
   } else {
     return false;
   }
 }
+
+/*function mannequinChange(bool) {
+  mannequin.hide();
+  if (bool == true) {
+    mannequin.image().src = "./Images/male.png"
+  } else {
+    mannequin.image().src = "./Images/female.png"
+  }
+  mannequin.moveToBottom();
+  mannequin.show();
+  imglayer.batchDraw();
+}*/
 
 //Allow to draw line on stage
 function add(stage) {
@@ -427,9 +471,75 @@ function add(stage) {
       textLine(pos1, mousePos, place, true, null);
       imgclick = false;
       pos1 = null;
-    } else {
-      imgclick = false;
-      pos1 = null;
+    } else if (imgclick == true && withinImg(mousePos)) {
+      pos1 = mousePos
     }
+  });
+}
+
+function pattern(image) {
+  imageO = image;
+  clear();
+  patternImage(imageO);
+  var imagePat = new Image(imageP.width(), imageP.height())
+  imagePat.src = "./Images/download.png"
+  applyPattern(imagePat)
+
+  function clear() {
+    if (imageP != null) {
+      imageP.remove();
+      patternImg.remove();
+      place.draw();
+    }
+  }
+
+  function applyPattern(img) {
+    patternImg = imageP.clone({
+      image: img,
+      globalCompositeOperation: 'source-atop',
+      opacity: .8
+    })
+    place.add(patternImg);
+    place.draw();
+    imageP.toImage({
+      callback(imageN) {
+        imageO.image(imageN);
+        imglayer.draw();
+      }
+    })
+  }
+
+  function patternImage(image) {
+    var dimensions = patternDim(image);
+    imageP = image.clone({
+      x : dimensions[0],
+      y : dimensions[1],
+      width : dimensions[2],
+      height : dimensions[3],
+      draggable: false
+    })
+    imageP.off('click');
+    place.add(imageP);
+    place.draw();
+  }
+
+  function patternDim(image) {
+    var x = 700 + (300 - image.width())/2
+    var y = (600 - image.height())/2
+    var width = image.width()
+    var height = image.height()
+    return [x, y, width, height]
+  }
+}
+
+
+function imageMenu(image) {
+  image.on('dblclick', function(event) {
+    image.off('dblclick');
+    var x = confirm("Send " + image.name() + " to the Pattern Box");
+    if (x) {
+        pattern(image);
+    }
+    imageMenu(image)
   });
 }
