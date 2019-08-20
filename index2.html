@@ -13,17 +13,80 @@
 </head>
 <body>
   <div class="container-fluid">
-    <div class="row no-gutters justify-content-center">
-        <div class="col-auto order-first">
-
+    <div class="row">
+      <div class="btn-group" role="group" aria-label="">
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">File</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu6">
+          <button class="dropdown-item btn" onclick="home()">Home</button>
+          <button class="dropdown-item btn" onclick="showData()">Open</button>
+          <button class="dropdown-item btn" onclick="save()">Save</button>
         </div>
-        <div class="col-auto">
-
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <button class="dropdown-item btn" onclick="cutNodes()">Cut</button>
+          <button class="dropdown-item btn" onclick="copyNodes()">Copy</button>
+          <button class="dropdown-item btn" onclick="pasteNodes()">Paste</button>
+          <button class="dropdown-item btn" onclick="createCluster()">Group</button>
+          <button class="dropdown-item btn" onclick="removeCluster()">Ungroup</button>
+          <button class="dropdown-item btn" onclick="selectAllCells()">Select Cells</button>
+          <button class="dropdown-item btn" onclick="selectAllCuboids()">Select Cuboids</button>
+          <button class="dropdown-item btn" onclick="selectAllWbs()">Select WB</button>
+          <button class="dropdown-item btn" onclick="selectAllCollabs()">Select Collabs</button>
+          <button class="dropdown-item btn" onclick="selectAllNhs()">Select NH</button>
+          <button class="dropdown-item btn" onclick="network.unselectAll()">De-Select All</button>
         </div>
-        <div class="col-auto order-last">
-            
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item btn" onclick="getParentNodes()">Parent Nodes</button>
+          <button class="dropdown-item btn" onclick="getChildNodes()">Child Nodes</button>
+          <a class="dropdown-item btn" onclick="sendNodeNames()" target="_blank" href="AnnotationTool-master/index.html" role="button">Image Editor</a>
         </div>
-    </div>
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
+        <div class="dropdown-menu" id="openPrivateSpace" aria-labelledby="dropdownMenu4"></div>
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Submit</button>
+        <div class="dropdown-menu" id="submitPrivateSpace" aria-labelledby="dropdownMenu5"></div>
+      </span>
+      <span class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" count="-1" onclick="getHierarchy('wb', '1176')">Filters</button>
+        <div class="dropdown-menu" id="filterList" aria-labelledby="dropdownMenu7"></div>
+      </span>
+      <span>
+        <!-- <iframe name="hiddenFrame" class="hide"></iframe> -->
+        <form name="upload-form" method="POST" enctype="multipart/form-data" action="http://192.168.250.23:3030/upload" target="hiddenFrame">
+          <div class="form-group">
+            <input type="file" class="form-control-file toggle" id="exampleFormControlFile1" name="myfile" disabled>
+            <input type="text" name="myarray" hidden id="passArray">
+          </div>
+        </form>
+      </span>
+      <button class="btn toggle-button" onclick="submitForm()" disabled>Upload</button>
+      <div class="input-group col-4">
+        <div class="form-group">
+          <div class="form-check">
+              <input class="form-check-input getCell" type="checkbox" value="" id="showContents">
+              <label class="form-check-label" for="showContents">Show Contents</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="filter">
+              <label class="form-check-label" for="filter">Filter</label>
+          </div>
+        </div>
+        <input type="text" class="form-control getAddress" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+        <div class="input-group-append rippleButton">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getAddress()">Ripple</button>
+        </div>
+      </div>
+      </div>
+      </div>
     <div class="row no-gutters">
       <div class="col-4 hierarchy">
         <div class="card">

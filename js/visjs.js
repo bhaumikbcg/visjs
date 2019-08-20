@@ -98,7 +98,7 @@ var options = {autoResize:false, height:'100%', width:'100%', locales:locales, c
           }
     },
     manipulation:{
-        enabled:true,
+        enabled:false, //true this to add the add node and edit node button
         initiallyActive:true,
         addNode: function(nodeData, callback){
             nodeData.label = 'London';
